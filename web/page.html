@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style type="text/css">
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .slider {
+        -webkit-appearance: slider-vertical;
+        background: transparent;
+        cursor: pointer;
+        width: 3rem;
+        height: 175px;
+        margin-top: 20px;
+        writing-mode: bt-rl;
+        margin-left: 0;
+      }
+      .slider::-moz-range-track {
+        background: #053a5f;
+        height: 175px;
+      }
+      .slider::-webkit-slider-runnable-track {
+        background: #053a5f;
+        height: 175px;
+      }
+      .slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        background-color: red;
+        height: 2px;
+        width: 2px;
+      }
+      .slider::-moz-range-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        background-color: red;
+        height: 5px;
+        width: 10px;
+        border: none;
+        border-radius: 0;
+      }
+
+      .slider:focus {
+        outline: none;
+      }
+
+      .slider:focus::-moz-range-thumb {
+        border: 2px solid green;
+        outline: 3px solid yellow;
+        outline-offset: 0.125px;
+      }
+
+      .vol {
+        padding-right: 30px;
+      }
+
+      .canvasHolder,
+      .sliderHolder {
+        display: flex;
+        width: 100vw;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .settings {
+        display: none;
+      }
+
+      .player {
+        display: none;
+      }
+      .home {
+        width: 100vw;
+        position: absolute;
+      }
+
+      .playingNow {
+        position: fixed;
+        bottom: 0px;
+        height: fit-content;
+        width: 100%;
+        background-color: black;
+        cursor: pointer;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: white;
+      }
+
+      .currentSongH {
+        width: calc(100% - 100px);
+      }
+
+      .buttons {
+        width: 150px;
+        display: flex;
+      }
+      .songlist {
+        height: calc(100vh-200px);
+        margin-top: 50px;
+        margin-bottom: 100px;
+      }
+      p {
+        height: 30px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        overflow: hidden;
+        width: 100vw;
+        padding: 10px;
+      }
+      p:hover {
+        background-color: grey;
+      }
+      .bd {
+        position: absolute;
+      }
+      .homeHeader {
+        color: white;
+        background-color: black;
+        position: fixed;
+        height: 50px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        padding-left: 20px;
+      }
+      .active {
+        color: red;
+      }
+      .headplayer {
+        width: 100vw;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: black;
+        height: 50px;
+        padding: 10px;
+      }
+
+      .button {
+      }
+      .playerflex {
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body class="bd">
+    <div class="settings">
+      <div class="settingsHeader">
+        <button onclick="showHome()">Home</button>
+      </div>
+      <audio id="myaudio"></audio>
+
+      <div class="canvasHolder">
+        <canvas id="canv" style="width: 200px; height: 100px"></canvas>
+      </div>
+
+      <div class="sliderHolder">
+        <div id="sliders" style="width: 400px; display: flex"></div>
+      </div>
+    </div>
+    <!-------------------------------------------------------------------------------------------------->
+
+    <div class="player">
+      <div class="playerflex">
+        <div class="headplayer">
+          <button onclick="showHome()">Home</button>
+          <h4>My File</h4>
+          <button onclick="showSettings()">Settings</button>
+        </div>
+
+        <div class="canvasHolder2">
+          <canvas id="canv2" style="width: 400px; height: 200px"></canvas>
+        </div>
+        <div class="controls">
+          <button onclick="setPrevious()">Prev</button>
+          <button
+            id="playbt"
+            data-playing="false"
+            class="playbtn"
+            onclick="playTrack(this)"
+          >
+            Play
+          </button>
+          <button onclick="setForward()">Forw</button>
+        </div>
+      </div>
+    </div>
+    <!------------------------------------------------------------------------------------------------>
+    <div class="home">
+      <div class="homeHeader">
+        <h4>Home</h4> 
+      </div>
+      <div class="songlist">
+
+        <!---dispaly music heare-->
+
+
+      </div>
+      <div class="playingNow" onclick="showPlayer()">
+        <div class="currentSongH">
+          <p class="currentSong">No Song playing</p>
+        </div>
+        <div class="buttons">
+          <button class="cbutton" onclick="setForward()">Next</button>
+          <button class="cbutton" onclick="setPrevious()">Prev</button>
+          <button
+            class="cbutton playbtn"
+            id="playbtn"
+            data-playing="false"
+            onclick="playTrack(this)"
+          >
+            Play
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="./web/main.js"></script>
+</html>

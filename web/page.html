@@ -10,6 +10,7 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+        font-family: 'Courier New', Courier, monospace, Ubuntu;
       }
 
       .slider {
@@ -69,6 +70,22 @@
         align-items: center;
       }
 
+      #canv2 {
+        width: 100%;
+        height: 100%;
+      }
+
+      .canvasHolder2{
+        height: 100%;
+        z-index: 0;
+        width: 100vw;
+        position: fixed;
+        top: calc(100vh / 4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
       .settings {
         display: none;
       }
@@ -76,9 +93,11 @@
       .player {
         display: none;
       }
+
       .home {
-        width: 100vw;
+        width: 100%;
         position: absolute;
+        background-color: red;
       }
 
       .playingNow {
@@ -99,62 +118,100 @@
         width: calc(100% - 100px);
       }
 
+      .playingNow{
+        background-color: rgb(211, 151, 151);
+        height: 70px;
+        font-weight: bolder;
+      }
+
+      .playingNow button {
+        background-color: green;
+      }
+
       .buttons {
         width: 150px;
         display: flex;
       }
+
       .songlist {
         height: calc(100vh-200px);
-        margin-top: 50px;
         margin-bottom: 100px;
+        width: 100vw;
+        background-color: rgba(255,255,255,0.1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        margin-top: 50px;
       }
-      p {
-        height: 30px;
+
+      #song {
+        width: 95%;
         display: flex;
         align-items: center;
         cursor: pointer;
         overflow: hidden;
-        width: 100vw;
         padding: 10px;
+        height: 50px;
+        background-color: rgba(255, 255, 255, 0.3);
+        margin-top: 10px;
+        border-radius: 10px;
+        padding: 20px;
+
       }
-      p:hover {
-        background-color: grey;
+
+      #song:hover {
+        background-color: rgb(173, 172, 172);
       }
+
       .bd {
         position: absolute;
       }
+
       .homeHeader {
         color: white;
         background-color: black;
         position: fixed;
+        z-index: 100;
         height: 50px;
         width: 100%;
         display: flex;
         align-items: center;
         padding-left: 20px;
+        font-size: 20px;
+        color: s;
       }
+
+      .magic{
+        position: relative;
+        width: 100vw;
+      }
+
       .active {
         color: red;
       }
+      
       .headplayer {
         width: 100vw;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background-color: black;
+        background-color: rgb(133, 70, 70);
         height: 50px;
         padding: 10px;
       }
 
-      .button {
-      }
       .playerflex {
         width: 100vw;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        background-color: red;
       }
+
     </style>
   </head>
   <body class="bd">
@@ -174,41 +231,24 @@
     </div>
     <!-------------------------------------------------------------------------------------------------->
 
-    <div class="player">
-      <div class="playerflex">
-        <div class="headplayer">
-          <button onclick="showHome()">Home</button>
-          <h4>My File</h4>
-          <button onclick="showSettings()">Settings</button>
-        </div>
-
-        <div class="canvasHolder2">
-          <canvas id="canv2" style="width: 400px; height: 200px"></canvas>
-        </div>
-        <div class="controls">
-          <button onclick="setPrevious()">Prev</button>
-          <button
-            id="playbt"
-            data-playing="false"
-            class="playbtn"
-            onclick="playTrack(this)"
-          >
-            Play
-          </button>
-          <button onclick="setForward()">Forw</button>
-        </div>
-      </div>
-    </div>
     <!------------------------------------------------------------------------------------------------>
     <div class="home">
       <div class="homeHeader">
         <h4>Home</h4> 
+        <button onclick="showSettings()">Settings</button>
       </div>
+      <div class="magic">
+        <div class="canvasHolder2">
+          <canvas id="canv2" style="width: 100vw; height: 70vh"></canvas>
+        </div>
       <div class="songlist">
+
+
 
         <!---dispaly music heare-->
 
 
+      </div>
       </div>
       <div class="playingNow" onclick="showPlayer()">
         <div class="currentSongH">

@@ -6,13 +6,13 @@
     const songs = await res.json();
     
     const generatedHtml = songs.map(function (song, index) {
-        return `<p data-link="${song.path}" onclick="setSong(this)" data-index="${index}">${song.name}</p>`
+        return `<p data-link="${song.path}" id="song" onclick="setSong(this)" data-index="${index}">${song.name}</p>`
     }).join("");
     
     console.log(generatedHtml);
     
     const songDispqlyer = document.querySelector(".songlist");
-    songDispqlyer.innerHTML = generatedHtml;
+    songDispqlyer.innerHTML += generatedHtml;
 })();
 
 var FREQ_MIN = 20;
@@ -68,10 +68,15 @@ function draw(){
     //analyser.getByteFrequencyData(dataArray);
     //console.log(dataArray);
 
+    const colours = ["azure", 
+    "brown", "grey", "peru","red",
+     "black", "green", "yellow","blue",
+      "violet", "pink", "beige", "white"];
+
     canvas2ctx.fillStyle = "white";
     canvas2ctx.fillRect(0,0,widtH,heigHt);
-    canvas2ctx.lineWidth = 2;
-    canvas2ctx.strokeStyle = "black";
+    canvas2ctx.lineWidth = Math.random() * 5;
+    canvas2ctx.strokeStyle = colours[Math.floor(Math.random() * colours.length)];
 
     canvas2ctx.beginPath();
 
@@ -79,6 +84,7 @@ function draw(){
     let x = 0;
 
     for(let i = 0; i < bufferLen; i++){
+
         const v = dataArray[i]/128.0;
         const y = (v * heigHt)/2;
 
@@ -93,7 +99,7 @@ function draw(){
     }
 
 
-    canvas2ctx.lineTo(widtH,heigHt/2);
+    canvas2ctx.lineTo(widtH, heigHt/2);
     canvas2ctx.stroke();
     }
 
@@ -261,7 +267,7 @@ function createCordinates(nodes)
 
 function updateEQGraphics(){
     //createCordinates(nodes);
-var canvctx = document.querySelector("#canv").getContext("2d");
+var canvctx = document.querySelector("#canv2").getContext("2d");
 var canvWidth = canvctx.canvas.width;
 var canvHeight = canvctx.canvas.height;
 
